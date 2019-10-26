@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Auth::routes(['register' => false]);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'temperature'], function () {
+    Route::get('/', 'TemperatureController@index')->name('temperature.index');
+    Route::post('/store', 'TemperatureController@store')->name('temperature.store');
 });
