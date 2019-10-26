@@ -24,11 +24,13 @@ class Temperature
 
         unset($params['size']);
 
-        $this->esParams['body'] = [
-            'query' => [
-                'match' => $params ?? []
-            ]
-        ];
+        if (count($params) > 0) {
+            $this->esParams['body'] = [
+                'query' => [
+                    'match' => $params ?? []
+                ]
+            ];
+        }
 
         $this->esParams['size'] = $size;
 
