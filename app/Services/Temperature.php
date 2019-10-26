@@ -40,13 +40,9 @@ class Temperature
 
     public function store(array $params)
     {
-        $temperatures = $this->esClient->search($this->esParams);
-        $id = count($temperatures['hits']['hits']) + 1;
-
-        $this->esParams['id'] = $id;
         $this->esParams['body'] = $params;
         $this->esParams['refresh'] = true;
-        $this->esClient->create($this->esParams);
+        $this->esClient->index($this->esParams);
 
         return true;
     }
