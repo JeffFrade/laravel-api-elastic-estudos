@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $hosts = [
+            env('ES_HOST', '')
+        ];
+
+        $this->app->bind(Client::class, function () use ($hosts) {
+            return ClientBuilder::create()->setHosts($hosts)->build();
+        });
     }
 
     /**
@@ -23,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $client = app(Client::class);
+        $index = ['index' => env('ES_INDEX')];
+
+        if (!$client->indices()->exists($index)) {
+            $client->indices()->create($index);
+        }
     }
 }
