@@ -33,8 +33,9 @@ class Temperature
         }
 
         $this->esParams['size'] = $size;
+        $temperatures = $this->esClient->search($this->esParams);
 
-        return $this->esClient->search($this->esParams);
+        return $temperatures['hits']['hits'];
     }
 
     public function store(array $params)
