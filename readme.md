@@ -28,18 +28,6 @@ composer update
 php artisan key:generate
 ```
 
-- Gerar palavra secreta do JWT:
-
-``` bash
-php artisan jwt:secret
-```
-
-- Criar a tabela e popular o banco:
-
-``` bash
-php artisan migrate:fresh --seed
-```
-
 - Rodar a aplicação:
 
 ```bash
@@ -52,20 +40,7 @@ Host: `https://laravel-api-elastic-estudos.herokuapp.com/api`
 
 ## Rotas
 
-- POST - `/login`
-
-Parâmetros: [email, password] 
-
-Retorno: Token de autenticação.
-
-`email: admin@mail.com`
-`password: 123`
-
----
-
 - GET - `/temperature`
-
-Obs: Passar um Header `Authorization: Bearer [token obtido no login]`
 
 Parâmetros: [?temperatura, ?size]
 
@@ -76,8 +51,6 @@ Retorno: Temperaturas já cadastradas.
 ----
 
 - POST `/temperature/store`
-
-Obs: Passar um Header `Authorization: Bearer [token obtido no login]`
 
 Parâmetros: [temperatura]
 
