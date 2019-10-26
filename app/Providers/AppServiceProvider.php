@@ -15,8 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Client::class, function () {
-            return ClientBuilder::create()->build();
+        $hosts = [
+            env('ES_HOST', '')
+        ];
+
+        $this->app->bind(Client::class, function () use ($hosts) {
+            return ClientBuilder::create()->setHosts($hosts)->build();
         });
     }
 
