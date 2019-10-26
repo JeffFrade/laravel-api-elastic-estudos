@@ -26,7 +26,7 @@ class Temperature
 
         $this->esParams['body'] = [
             'query' => [
-                'match' => $params
+                'match' => $params ?? []
             ]
         ];
 
