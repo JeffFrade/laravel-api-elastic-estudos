@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Core\Providers;
 
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
