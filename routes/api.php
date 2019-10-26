@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Auth::routes(['register' => false]);
-
 Route::group(['prefix' => 'temperature'], function () {
     Route::get('/', 'TemperatureController@index')->name('temperature.index');
     Route::post('/store', 'TemperatureController@store')->name('temperature.store');
